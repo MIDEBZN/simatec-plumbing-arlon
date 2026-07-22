@@ -1,0 +1,129 @@
+---
+import Layout from '../layouts/Layout.astro';
+import EmergencyBanner from '../components/EmergencyBanner.astro';
+
+const values = [
+  {
+    icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
+    title: "Transparence & Honnêteté",
+    description: "Aucun frais camouflé. Tous nos tarifs sont expliqués et validés avec vous avant le début des travaux."
+  },
+  {
+    icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 9 0 0118 0z",
+    title: "Ponctualité & Réactivité",
+    description: "Nous respectons scrupuleusement les horaires de rendez-vous et réagissons en moins de 30 min pour les dépannages d'urgence."
+  },
+  {
+    icon: "M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z",
+    title: "Artisanat Qualifié Belge",
+    description: "Formés aux dernières normes belges du CSTC, nos artisans maîtrisent les systèmes de chauffage modernes et les techniques d'assainissement."
+  }
+];
+
+const equipment = [
+  "Caméra thermique infrarouge FLIR pour recherche de fuite sans démolition",
+  "Caméra d'inspection vidéo endoscopique HD pour tuyauteries",
+  "Camion camionnette équipée avec station d'hydrocurage 200 Bars",
+  "Appareils de test d'étanchéité gaz électronique aux normes de sécurité",
+  "Outillage d'emboîtement et sertissage multicouche & cuivre moderne"
+];
+---
+
+<Layout
+  title="À Propos de SIMATEC | Entreprise de Plomberie à Arlon"
+  description="Découvrez l'histoire, l'équipe et les engagements de Simatec, votre partenaire plomberie et chauffage certifié agréé à Arlon et en Province de Luxembourg."
+>
+  <!-- Header -->
+  <section class="bg-slate-950 pt-16 pb-16 border-b border-slate-800 text-center relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-bold uppercase tracking-wider">
+        Notre Histoire & Nos Engagements
+      </div>
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
+        À Propos de la société SIMATEC
+      </h1>
+      <p class="text-slate-400 text-lg max-w-3xl mx-auto">
+        Artisans plombiers et chauffagistes passionnés au service des particuliers et professionnels d'Arlon et de sa région depuis plus de 15 ans.
+      </p>
+    </div>
+  </section>
+
+  <!-- Story & Vision -->
+  <section class="py-20 bg-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-6 space-y-6">
+          <span class="text-xs font-bold text-cyan-400 uppercase tracking-widest">Une entreprise locale de confiance</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+            L'excellence technique alliée au service de proximité à Arlon
+          </h2>
+          <p class="text-slate-300 text-base leading-relaxed">
+            Fondée à Arlon, <strong>SIMATEC</strong> est née d'une volonté simple : apporter aux habitants du chef-lieu de la province de Luxembourg un service de plomberie et de chauffage d'une réactivité exemplaire et d'une rigueur absolue.
+          </p>
+          <p class="text-slate-300 text-base leading-relaxed">
+            Que ce soit pour stopper une fuite nocturne en 25 minutes, installer une chaudière à haut rendement pour affronter l'hiver arlonais ou rénover entièrement une salle d'eau, nos techniciens agissent avec le même souci du détail et le respect total de votre domicile.
+          </p>
+
+          <div class="pt-4 grid grid-cols-2 gap-4">
+            <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700">
+              <span class="text-2xl font-extrabold text-cyan-400 block">100%</span>
+              <span class="text-xs text-slate-300">Techniciens Agréés Wallonie</span>
+            </div>
+            <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700">
+              <span class="text-2xl font-extrabold text-emerald-400 block">10 Ans</span>
+              <span class="text-xs text-slate-300">Garantie sur gros travaux</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6">
+          <div class="bg-slate-800 border border-slate-700 rounded-3xl p-8 space-y-6 shadow-2xl">
+            <h3 class="text-2xl font-bold text-white">Équipements & Technologies de pointe</h3>
+            <p class="text-slate-300 text-sm">
+              Pour vous garantir des interventions rapides et non destructives, nous investissons constamment dans le meilleur matériel professionnel :
+            </p>
+            <ul class="space-y-3">
+              {equipment.map(item => (
+                <li class="flex items-start gap-3 text-xs text-slate-200 bg-slate-900/80 p-3 rounded-xl border border-slate-700/60">
+                  <svg class="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="py-20 bg-slate-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <div class="text-center max-w-2xl mx-auto space-y-3">
+        <h2 class="text-xs font-bold text-cyan-400 uppercase tracking-widest">Nos Valeurs</h2>
+        <p class="text-3xl font-extrabold text-white">Ce qui fait la différence Simatec</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {values.map(val => (
+          <div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl space-y-4">
+            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={val.icon}></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white">{val.title}</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">{val.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Emergency Banner -->
+  <EmergencyBanner />
+</Layout>

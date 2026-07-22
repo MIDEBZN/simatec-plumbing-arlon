@@ -1,0 +1,185 @@
+---
+import Layout from '../layouts/Layout.astro';
+import EmergencyBanner from '../components/EmergencyBanner.astro';
+
+const servicesDetailed = [
+  {
+    id: "depannage",
+    title: "Dépannage Urgent Plomberie 24/7",
+    tagline: "Intervention rapide en 30 minutes sur Arlon & environs",
+    description: "Une canalisation qui pète ou un chauffe-eau en panne ne prévient jamais. Nos artisans plombiers d'urgence d'Arlon sont équipés de camions ateliers prêts à intervenir à toute heure du jour et de la nuit.",
+    pricing: "À partir de 69€ TTC",
+    features: [
+      "Recherche et réparation de fuites d'eau ou de gaz",
+      "Remplacement de robinetterie, vanne de coupure, flotteur WC",
+      "Réparation d'urgence chauffe-eau électrique et boiler",
+      "Changement de joints, raccordements et tuyauterie PVC/Multicouche",
+      "Mise en sécurité immédiate lors d'inondation"
+    ]
+  },
+  {
+    id: "chauffage",
+    title: "Chauffage & Chaudières (Gaz / Mazout / PAC)",
+    tagline: "Techniciens agréés Région Wallonne pour votre confort thermique",
+    description: "Nous assurons la pose, l'entretien réglementaire et la remise en service de votre système de chauffage. Un entretien régulier garantit sécurité, économies d'énergie et conformité légale.",
+    pricing: "Entretien à partir de 149€ TTC avec attestation",
+    features: [
+      "Entretien annuel obligatoire chaudière gaz & mazout avec attestation légale",
+      "Dépannage de chaudière toutes marques (Vaillant, Viessmann, Bulex, Bosch)",
+      "Installation et remplacement de radiateurs et thermostats connectés",
+      "Désembouage complet du circuit de chauffage central",
+      "Pose de pompes à chaleur air-eau haut rendement"
+    ]
+  },
+  {
+    id: "debouchage",
+    title: "Débouchage & Assainissement Canalisation",
+    tagline: "Véhicule d'hydrocurage et inspection vidéo endoscopique",
+    description: "Évier bloqué, WC qui déborde ou odeurs désagréables dans vos canalisations ? Nous utilisons la technique d'hydrocurage à haute pression pour déboucher et décaper vos tuyaux sans produits chimiques agressifs.",
+    pricing: "Forfait débouchage dès 89€ TTC",
+    features: [
+      "Débouchage WC, lavabo, baignoire, douche et évier",
+      "Hydrocurage haute pression pour canalisations principales et égouts",
+      "Inspection vidéo par caméra couleur avec rapport pour assurances",
+      "Localisation de casse, bouchon racinaire ou affaissement",
+      "Curage préventif d'immeubles et copropriétés"
+    ]
+  },
+  {
+    id: "renovation",
+    title: "Rénovation de Salle de Bain Clé en Main",
+    tagline: "Transformez votre salle d'eau en un espace moderne & ergonomique",
+    description: "Du conseil initial à la remise des clés, nous prenons en charge l'intégralité de la création de votre salle de bain : démolition, plomberie, étanchéité, pose de sanitaires et carrelage.",
+    pricing: "Sur devis personnalisé gratuit",
+    features: [
+      "Remplacement de baignoire par une douche à l'italienne sécurisée",
+      "Pose de meubles vasques, miroir LED et sanitaires suspendus",
+      "Raccordements de plomberie encastrés et réseaux d'évacuation",
+      "Aménagement spécial PMR (Personnes à Mobilité Réduite)",
+      "Travaux d'étanchéité et finitions soignées"
+    ]
+  },
+  {
+    id: "recherche-fuite",
+    title: "Recherche de Fuite Non Destructive",
+    tagline: "Détection précise sans casser vos murs ni carrelages",
+    description: "Une trace d'humidité sur un plafond ou une consommation d'eau anormale ? Nous localisons les fuites invisibles grâce à nos équipements technologiques de pointe.",
+    pricing: "Prise en charge fréquente par votre assurance habitation",
+    features: [
+      "Caméra thermique infrarouge haute résolution",
+      "Détection électroacoustique du bruit de fuite",
+      "Infiltration par gaz traceur (hydrogène/azote)",
+      "Rapport technique détaillé pour votre compagnie d'assurance",
+      "Intervention ciblée évitant les démolitions inutile"
+    ]
+  },
+  {
+    id: "adoucisseur",
+    title: "Installation d'Adoucisseurs d'Eau",
+    tagline: "Protégez vos appareils et éliminez le calcaire d'Arlon",
+    description: "L'eau dans la région d'Arlon comporte un taux de calcaire élevé qui entartre vos électroménagers et chauffe-eaux. Nos adoucisseurs sur-mesure vous garantissent une eau douce au quotidien.",
+    pricing: "Sur devis avec pose & entretien inclus",
+    features: [
+      "Adoucisseurs résine monoblocs haute performance",
+      "Protection intégrale de votre tuyauterie et électroménager",
+      "Économie d'énergie et de produits nettoyants",
+      "Filtre anti-impuretés et tête volumétrique automatique"
+    ]
+  }
+];
+---
+
+<Layout
+  title="Nos Services de Plomberie & Chauffage à Arlon | SIMATEC"
+  description="Découvrez tous les services proposés par Simatec à Arlon : Dépannage urgence 24/7, installation et entretien de chaudière, débouchage canalisation, rénovation salle de bain."
+>
+  <!-- Page Header Banner -->
+  <section class="bg-slate-950 pt-16 pb-16 border-b border-slate-800 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-bold uppercase tracking-wider">
+        Expertise & Savoir-faire
+      </div>
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
+        Nos Prestations de Plomberie & Chauffage
+      </h1>
+      <p class="text-slate-400 text-lg max-w-3xl mx-auto">
+        Découvrez l'ensemble de nos services professionnels sur Arlon et la Province de Luxembourg. Devis clair, tarifs transparents et travail garanti.
+      </p>
+    </div>
+  </section>
+
+  <!-- Detailed Services Section -->
+  <section class="py-20 bg-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      
+      {servicesDetailed.map((service, index) => (
+        <div id={service.id} class={`scroll-mt-28 bg-slate-800/60 border border-slate-700/80 rounded-3xl p-8 lg:p-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+          
+          <div class="lg:col-span-7 space-y-5">
+            <div class="flex flex-wrap items-center gap-3">
+              <span class="bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 text-xs font-bold px-3 py-1 rounded-full">
+                Service Certifié
+              </span>
+              <span class="text-emerald-400 text-xs font-semibold">
+                {service.pricing}
+              </span>
+            </div>
+
+            <h2 class="text-3xl font-extrabold text-white">
+              {service.title}
+            </h2>
+
+            <p class="text-cyan-300 text-sm font-semibold">
+              {service.tagline}
+            </p>
+
+            <p class="text-slate-300 text-sm leading-relaxed">
+              {service.description}
+            </p>
+
+            <div class="pt-2">
+              <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Comprenant notamment :</h3>
+              <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-slate-200">
+                {service.features.map(feature => (
+                  <li class="flex items-start gap-2 bg-slate-900/60 p-2.5 rounded-xl border border-slate-700/60">
+                    <svg class="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 bg-slate-900 p-8 rounded-2xl border border-slate-700 space-y-6 text-center">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-blue-600 to-cyan-400 mx-auto flex items-center justify-center text-white font-extrabold text-2xl shadow-lg shadow-cyan-500/20">
+              S
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-white">Besoin de ce service ?</h3>
+              <p class="text-slate-400 text-xs mt-1">Intervention rapide sur simple appel ou formulaire.</p>
+            </div>
+            <a
+              href="tel:+3263998877"
+              class="block w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-cyan-500/25 transition-all text-sm"
+            >
+              Appeler maintenant (+32 63 99 88 77)
+            </a>
+            <a
+              href="/contact"
+              class="block w-full bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 font-semibold py-3 rounded-xl border border-slate-700 text-xs"
+            >
+              Demander un devis détaillé
+            </a>
+          </div>
+
+        </div>
+      ))}
+
+    </div>
+  </section>
+
+  <!-- Emergency Banner -->
+  <EmergencyBanner />
+</Layout>

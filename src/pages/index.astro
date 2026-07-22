@@ -1,0 +1,377 @@
+---
+import Layout from '../layouts/Layout.astro';
+import EmergencyBanner from '../components/EmergencyBanner.astro';
+
+const servicesList = [
+  {
+    id: "depannage",
+    title: "Dépannage Urgent 24/7",
+    icon: "M13 10V3L4 14h7v7l9-11h-7z",
+    badge: "Intervention < 30 min",
+    badgeColor: "bg-red-500/10 text-red-400 border-red-500/20",
+    description: "Fuite d'eau, canalisation bouchée, WC bloqué ou coupure de chauffage. Intervention ultra-rapide 24h/24 et 7j/7 sur Arlon et communes voisines.",
+    features: ["Recherche immédiate de fuite", "Remplacement robinetterie", "Réparation d'urgence d'inondation"]
+  },
+  {
+    id: "chauffage",
+    title: "Chauffage & Chaudières",
+    icon: "M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z",
+    badge: "Agréé Wallonie",
+    badgeColor: "bg-amber-500/10 text-amber-400 border-amber-500/20",
+    description: "Entretien obligatoire, installation et dépannage de chaudières gaz, mazout et pompes à chaleur par nos techniciens qualifiés.",
+    features: ["Entretien annuel avec attestation", "Dépannage radiateurs & circulateurs", "Installation pompe à chaleur"]
+  },
+  {
+    id: "debouchage",
+    title: "Débouchage Canalisation",
+    icon: "M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z",
+    badge: "Haute Pression",
+    badgeColor: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
+    description: "Débouchage rapide d'éviers, WC, douches et réseaux principaux avec véhicule d'hydrocurage et inspection caméra vidéo.",
+    features: ["Passage caméra endoscopique", "Hydrocurage haute pression", "Nettoyage fosses & égouts"]
+  },
+  {
+    id: "renovation",
+    title: "Rénovation Salle de Bain",
+    icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6",
+    badge: "Clé en main",
+    badgeColor: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+    description: "Création et rénovation complète de votre salle de bain : remplacement de baignoire par douche italienne, carrelage et tuyauterie.",
+    features: ["Douche à l'italienne PMR", "Pose de sanitaires suspendus", "Adoucisseur d'eau anti-calcaire"]
+  }
+];
+
+const testimonials = [
+  {
+    name: "Marc D.",
+    location: "Arlon (Centre)",
+    rating: 5,
+    text: "Intervention rapide un dimanche soir suite à un tuyau percé dans ma cave. Le plombier de Simatec est arrivé en 20 minutes avec le matériel adéquat. Travail impeccable et prix très honnête !"
+  },
+  {
+    name: "Sophie L.",
+    location: "Messancy",
+    rating: 5,
+    text: "Nous avons fait appel à Simatec pour l'installation d'une nouvelle chaudière à condensation. Conseils avisés, chantier très propre et attestation officielle fournie pour les primes."
+  },
+  {
+    name: "Thomas W.",
+    location: "Aubange",
+    rating: 5,
+    text: "Débouchage de la canalisation principale réalisé avec la caméra vidéo. Problème résolu rapidement là où d'autres avaient échoué. Je recommande vivement Simatec !"
+  }
+];
+
+const faqs = [
+  {
+    q: "Quels sont vos délais d'intervention en cas d'urgence à Arlon ?",
+    a: "Nos équipes d'astreinte basées à Arlon interviennent en général dans un délai de 20 à 30 minutes pour toutes les urgences (fuite d'eau importante, panne de chauffage en hiver, canalisation totalement bouchée)."
+  },
+  {
+    q: "Proposez-vous des devis gratuits avant les travaux ?",
+    a: "Oui, tous nos devis sont 100% gratuits et sans aucun engagement. Nous vous présentons un tarif clair et détaillé avant le démarrage de toute intervention."
+  },
+  {
+    q: "Intervenez-vous également du côté luxembourgeois ?",
+    a: "Absolument. Grâce à notre positionnement géographique à Arlon, nous couvrons la frontière luxembourgeoise (Steinfort, Capellen, Windhof) ainsi que toute la Province de Luxembourg en Belgique."
+  },
+  {
+    q: "Vos plombiers et chauffagistes sont-ils certifiés ?",
+    a: "Oui, tous les artisans Simatec possèdent les agréments officiels de la Région Wallonne pour le chauffage (Gaz/Mazout) et disposent d'une assurance responsabilité civile professionnelle complète."
+  }
+];
+---
+
+<Layout
+  title="SIMATEC | Plombier Chauffagiste à Arlon (6700) • Dépannage 24h/24"
+  description="Entreprise spécialisée en plomberie, dépannage urgent, chauffage et débouchage à Arlon, Messancy, Aubange. Intervention rapide en 30 minutes. Contactez Simatec au +32 63 99 88 77."
+>
+  <!-- Hero Section -->
+  <section class="relative bg-slate-900 pt-12 pb-24 lg:pt-20 lg:pb-32 overflow-hidden border-b border-slate-800">
+    <!-- Grid pattern background -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b15_1px,transparent_1px),linear-gradient(to_bottom,#1e293b15_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Hero Text -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-bold uppercase tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+            Plombier Chauffagiste de Référence à Arlon
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15]">
+            Votre confort thermique & plomberie entre des <span class="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">mains d'experts</span>.
+          </h1>
+
+          <p class="text-slate-300 text-lg sm:text-xl leading-relaxed font-normal">
+            Dépannage d'urgence en <strong>30 minutes</strong>, installation de chauffage, débouchage haute pression et rénovation de salle de bain à Arlon et dans tout le Sud-Luxembourg.
+          </p>
+
+          <!-- Badges list -->
+          <div class="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs font-semibold text-slate-300">
+            <div class="flex items-center gap-1.5 bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700">
+              <svg class="w-4 h-4 text-emerald-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              Disponibilité 24/7
+            </div>
+            <div class="flex items-center gap-1.5 bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700">
+              <svg class="w-4 h-4 text-emerald-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              Devis 100% Gratuit
+            </div>
+            <div class="flex items-center gap-1.5 bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700">
+              <svg class="w-4 h-4 text-emerald-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              Garantie Décennale
+            </div>
+          </div>
+
+          <!-- Hero Buttons -->
+          <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <a
+              href="tel:+3263998877"
+              class="w-full sm:w-auto bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-extrabold text-base px-8 py-4 rounded-xl shadow-xl shadow-red-600/30 hover:scale-105 transition-all flex items-center justify-center gap-3"
+            >
+              <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+              </svg>
+              <span>Appeler l'Urgence (+32 63 99 88 77)</span>
+            </a>
+
+            <a
+              href="/contact"
+              class="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 text-slate-100 font-bold text-base px-7 py-4 rounded-xl border border-slate-700 hover:border-slate-600 transition-all text-center"
+            >
+              Demande de Devis
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Quick Quote Card Form -->
+        <div class="lg:col-span-5">
+          <div class="bg-slate-800/90 backdrop-blur-xl border border-slate-700 p-6 sm:p-8 rounded-2xl shadow-2xl space-y-5">
+            <div class="border-b border-slate-700/80 pb-4">
+              <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                Devis Express en 2 Minutes
+              </h3>
+              <p class="text-xs text-slate-400 mt-1">Réponse garantie sous 1 heure en journée.</p>
+            </div>
+
+            <form action="/contact" method="GET" class="space-y-4">
+              <div>
+                <label for="hero-service" class="block text-xs font-semibold text-slate-300 mb-1">Service souhaité</label>
+                <select id="hero-service" name="service" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-cyan-500">
+                  <option value="depannage">Dépannage d'urgence 24/7</option>
+                  <option value="chauffage">Chauffage & Chaudière</option>
+                  <option value="debouchage">Débouchage canalisation</option>
+                  <option value="renovation">Rénovation salle de bain</option>
+                  <option value="fuite">Recherche de fuite non destructive</option>
+                </select>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label for="hero-nom" class="block text-xs font-semibold text-slate-300 mb-1">Votre Nom</label>
+                  <input type="text" id="hero-nom" placeholder="Ex: Dupont" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-cyan-500" />
+                </div>
+                <div>
+                  <label for="hero-phone" class="block text-xs font-semibold text-slate-300 mb-1">Téléphone</label>
+                  <input type="tel" id="hero-phone" placeholder="0470 00 00 00" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-cyan-500" />
+                </div>
+              </div>
+
+              <div>
+                <label for="hero-city" class="block text-xs font-semibold text-slate-300 mb-1">Commune (Arlon & environs)</label>
+                <input type="text" id="hero-city" placeholder="Ex: 6700 Arlon" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-cyan-500" />
+              </div>
+
+              <button type="submit" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-cyan-500/25 transition-all text-sm uppercase tracking-wider">
+                Envoyer ma demande
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Statistics Banner -->
+  <section class="bg-slate-950 py-10 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+        <div class="space-y-1">
+          <p class="text-3xl sm:text-4xl font-extrabold text-cyan-400">&lt; 30 min</p>
+          <p class="text-xs sm:text-sm text-slate-400 font-medium">Intervention Urgence Arlon</p>
+        </div>
+        <div class="space-y-1">
+          <p class="text-3xl sm:text-4xl font-extrabold text-emerald-400">100%</p>
+          <p class="text-xs sm:text-sm text-slate-400 font-medium">Devis Gratuit & Sans Surprise</p>
+        </div>
+        <div class="space-y-1">
+          <p class="text-3xl sm:text-4xl font-extrabold text-amber-400">15+ Ans</p>
+          <p class="text-xs sm:text-sm text-slate-400 font-medium">Savoir-faire Artisanal</p>
+        </div>
+        <div class="space-y-1">
+          <p class="text-3xl sm:text-4xl font-extrabold text-indigo-400">24h / 7j</p>
+          <p class="text-xs sm:text-sm text-slate-400 font-medium">Dépannage Continu</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Services Grid -->
+  <section class="py-20 bg-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <div class="text-center max-w-3xl mx-auto space-y-4">
+        <h2 class="text-xs font-bold text-cyan-400 uppercase tracking-widest">Nos Domaines d'Expertise</h2>
+        <p class="text-3xl sm:text-4xl font-extrabold text-white">Des prestations complètes de plomberie & chauffage</p>
+        <p class="text-slate-400 text-base">De la petite réparation urgente au projet de rénovation complète, nous mettons notre expertise technique à votre service à Arlon.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {servicesList.map(item => (
+          <div class="bg-slate-800/60 border border-slate-700/80 p-8 rounded-2xl hover:border-cyan-500/50 transition-all duration-300 group hover:-translate-y-1 flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <div class="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center text-cyan-400 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-colors">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={item.icon}></path>
+                  </svg>
+                </div>
+                <span class={`text-xs px-3 py-1 rounded-full border font-semibold ${item.badgeColor}`}>
+                  {item.badge}
+                </span>
+              </div>
+
+              <h3 class="text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors">
+                {item.title}
+              </h3>
+              <p class="text-slate-300 text-sm leading-relaxed">
+                {item.description}
+              </p>
+
+              <ul class="space-y-2 pt-2">
+                {item.features.map(feat => (
+                  <li class="flex items-center gap-2 text-xs text-slate-400">
+                    <svg class="w-4 h-4 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span>{feat}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="pt-6 mt-6 border-t border-slate-700/60">
+              <a href={`/services#${item.id}`} class="inline-flex items-center gap-2 text-sm font-semibold text-cyan-400 hover:text-cyan-300">
+                En savoir plus sur ce service
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Emergency Callout Banner -->
+  <EmergencyBanner />
+
+  <!-- Why Choose Simatec -->
+  <section class="py-20 bg-slate-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      <div class="text-center max-w-3xl mx-auto space-y-4">
+        <h2 class="text-xs font-bold text-cyan-400 uppercase tracking-widest">Pourquoi choisir Simatec</h2>
+        <p class="text-3xl sm:text-4xl font-extrabold text-white">L'engagement qualité d'un artisan local d'Arlon</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-slate-900 p-8 rounded-2xl border border-slate-800 space-y-4">
+          <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center font-bold text-xl">
+            01
+          </div>
+          <h3 class="text-xl font-bold text-white">Réactivité & Proximité</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Basés au cœur d'Arlon (6700), nos techniciens connaissent parfaitement le secteur et interviennent avec réactivité sur tout le district.
+          </p>
+        </div>
+
+        <div class="bg-slate-900 p-8 rounded-2xl border border-slate-800 space-y-4">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold text-xl">
+            02
+          </div>
+          <h3 class="text-xl font-bold text-white">Transparence des Tarifs</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Aucun frais caché. Nous établissons un devis préalable clair détaillé avant le moindre coup de clé à molette.
+          </p>
+        </div>
+
+        <div class="bg-slate-900 p-8 rounded-2xl border border-slate-800 space-y-4">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-bold text-xl">
+            03
+          </div>
+          <h3 class="text-xl font-bold text-white">Agrément & Garantie</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Tous nos chantiers bénéficient de la garantie décennale et sont réalisés selon les règles de l'art du CSTC belge.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Testimonials -->
+  <section class="py-20 bg-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <div class="text-center max-w-2xl mx-auto space-y-3">
+        <h2 class="text-xs font-bold text-cyan-400 uppercase tracking-widest">Avis Clients</h2>
+        <p class="text-3xl font-extrabold text-white">Ce que disent nos clients à Arlon</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {testimonials.map(item => (
+          <div class="bg-slate-800/80 p-6 rounded-2xl border border-slate-700 space-y-4">
+            <div class="flex items-center gap-1 text-amber-400">
+              {Array.from({ length: item.rating }).map(() => (
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              ))}
+            </div>
+            <p class="text-slate-300 text-sm italic leading-relaxed">"{item.text}"</p>
+            <div class="pt-2 border-t border-slate-700/60 flex items-center justify-between text-xs">
+              <span class="font-bold text-white">{item.name}</span>
+              <span class="text-cyan-400 font-medium">{item.location}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Accordion -->
+  <section class="py-20 bg-slate-950">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <div class="text-center space-y-3">
+        <h2 class="text-xs font-bold text-cyan-400 uppercase tracking-widest">Foire aux questions</h2>
+        <p class="text-3xl font-extrabold text-white">Vos questions fréquentes sur nos interventions</p>
+      </div>
+
+      <div class="space-y-4">
+        {faqs.map(faq => (
+          <details class="bg-slate-900 border border-slate-800 rounded-xl p-5 group cursor-pointer">
+            <summary class="font-bold text-white text-base flex justify-between items-center">
+              <span>{faq.q}</span>
+              <span class="text-cyan-400 group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <p class="text-slate-300 text-sm mt-3 pt-3 border-t border-slate-800 leading-relaxed">
+              {faq.a}
+            </p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
